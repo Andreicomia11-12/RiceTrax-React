@@ -1,36 +1,40 @@
-/* Reset box-sizing for all */
+/* Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Layout container */
+/* Root page layout */
 .notifications-page {
   display: flex;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fafafa;
-  color: #222;
-  /* Stack vertically on small screens */
-  flex-direction: column;
+  color: #6d1818;
+  flex-direction: column; /* default stacked for small */
   margin: 0;
   padding: 0;
 }
 
-/* Sidebar */
-.notifications-page > .sidebar {
-  flex-shrink: 0;
-  width: 250px;
-  background: #2c3e50;
-  color: white;
-  min-height: 100vh;
-  /* Make sidebar sticky */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  transition: width 0.3s ease;
-  overflow-y: auto;
+/* Sidebar styling is controlled inside Sidebar component itself */
+/* Just reserve fixed width on desktop */
+@media (min-width: 768px) {
+  .notifications-page {
+    flex-direction: row;
+  }
+
+  /* Sidebar should have fixed width; ensure it does not collapse */
+  .notifications-page > *:first-child {
+    flex-shrink: 0;
+    width: 250px; /* match your sidebar width */
+    min-height: 100vh;
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+    overflow-y: auto;
+  }
 }
 
 /* Main content container */
@@ -40,9 +44,11 @@
   max-width: 960px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
+  margin-top: 3rem;
 }
 
-/* DateTimeDisplay & header */
+
 .notifications-container > * {
   margin-bottom: 1rem;
 }
@@ -52,11 +58,11 @@ h2 {
   font-size: 1.8rem;
   color: #222;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #2980b9;
+  border-bottom: 2px solid #059e12;
   padding-bottom: 0.25rem;
 }
 
-/* Notifications list */
+/* Notifications list styling */
 .notifications-list {
   list-style: none;
   padding: 0;
@@ -85,17 +91,19 @@ h2 {
   transform: translateY(-2px);
 }
 
-/* Color coding */
+/* Transparent yellow for low stock */
 .low-stock {
   background-color: rgba(255, 255, 0, 0.2);
+  color: #666600;
 }
 
+/* Transparent red for out of stock */
 .out-of-stock {
   background-color: rgba(255, 0, 0, 0.15);
   color: #a30000;
 }
 
-/* Text in notification */
+/* Notification text */
 .notification-info {
   font-weight: 600;
   flex: 1;
@@ -119,30 +127,16 @@ h2 {
   font-size: 1.1rem;
 }
 
-/* Responsive */
+/* Responsive adjustments */
 
-/* Medium screens and up: sidebar + content side-by-side */
-@media (min-width: 768px) {
-  .notifications-page {
-    flex-direction: row;
-  }
-
-  /* Sidebar stays fixed width */
-  .notifications-page > .sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }
-
-  .notifications-container {
-    padding: 2rem 2rem 3rem 2rem;
-  }
-}
-
-/* Smaller screens: stack sidebar above and expand */
 @media (max-width: 767px) {
-  .notifications-page > .sidebar {
-    width: 100%;
+  /* Sidebar stacked above content */
+  .notifications-page {
+    flex-direction: column;
+  }
+
+  .notifications-page > *:first-child {
+    width: 100% !important;
     min-height: auto;
     position: relative;
   }
@@ -152,7 +146,7 @@ h2 {
     max-width: 100%;
   }
 
-  /* Notification cards stack vertical with smaller font */
+  /* Notifications vertical stacking */
   .notification {
     flex-direction: column;
     align-items: flex-start;
@@ -165,7 +159,6 @@ h2 {
   }
 }
 
-/* Extra small devices */
 @media (max-width: 480px) {
   h2 {
     font-size: 1.4rem;

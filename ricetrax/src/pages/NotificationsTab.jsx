@@ -36,11 +36,10 @@ const NotificationsTab = () => {
 
   return (
     <div className="notifications-page">
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+      <Sidebar />
+      <DateTimeDisplay />
       <main className="notifications-container">
-        <DateTimeDisplay />
+        
         <h2>Product Notifications</h2>
 
         {notifications.length === 0 ? (
