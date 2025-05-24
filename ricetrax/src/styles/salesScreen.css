@@ -1,0 +1,282 @@
+/* salesScreen.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+.sales-page {
+  display: flex;
+}
+
+/* Leave space for sidebar */
+.sales-container {
+  margin-left: 220px; /* sidebar width */
+  padding: 2rem 2rem 4rem;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-top: 70px;
+}
+
+/* POS Heading */
+.pos-heading {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+  color: #2e7d32;
+  position: absolute;
+  top: 2rem;
+  left: 260px;
+}
+
+/* Left and Right sections side by side on desktop */
+.left-section,
+.right-section {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Left section is wider */
+.left-section {
+  flex: 2;
+  min-width: 320px;
+}
+
+.right-section {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Section Titles */
+.left-section h2,
+.right-section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+/* Cart item styling */
+.cart-item {
+  background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 60%;
+}
+
+.item-details span:first-child {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #2e7d32;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-details span:last-child {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Quantity controls */
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.item-controls button {
+  background-color: #2e7d32;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.item-controls button:hover {
+  background-color: #1b3d12;
+}
+
+.item-controls span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Remove button style */
+.remove-btn {
+  background-color: #c62828;
+  padding: 0.3rem 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.remove-btn:hover {
+  background-color: #8b0000;
+}
+
+/* Empty cart message */
+.empty-cart {
+  font-style: italic;
+  color: #888;
+  padding: 1rem 0;
+}
+
+/* Summary box */
+.summary-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Summary lines */
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-line.total {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2e7d32;
+}
+
+.summary-line.change {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #c62828;
+}
+
+/* Cash input */
+.summary-line label {
+  flex: 1;
+  font-weight: 600;
+  color: #1b5e20;
+}
+
+.summary-line input {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #2e7d32;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2e7d32;
+  text-align: right;
+  outline-offset: 2px;
+  outline-color: #a5d6a7;
+  transition: border-color 0.2s ease;
+}
+
+.summary-line input:focus {
+  border-color: #1b5e20;
+}
+
+/* Checkout button */
+.checkout-btn {
+  margin-top: 1rem;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.checkout-btn:hover:enabled {
+  background-color: #1b3d12;
+}
+
+.checkout-btn:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sales-container {
+    margin-left: 0;
+    padding: 1rem 1rem 3rem;
+    flex-direction: column;
+  }
+
+  .pos-heading {
+    position: static;
+    margin-top: 1rem;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .left-section,
+  .right-section {
+    min-width: auto;
+    width: 100%;
+    padding: 1rem 1rem;
+  }
+
+  .left-section {
+    margin-bottom: 2rem;
+  }
+
+  .summary-box {
+    font-size: 0.95rem;
+  }
+
+  .item-controls button,
+  .remove-btn {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .item-details span:first-child {
+    font-size: 1rem;
+  }
+}
