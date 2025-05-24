@@ -236,7 +236,7 @@ const Dashboard = () => {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Sales Records"
-        className="modal"
+        className="modal1"
         overlayClassName="overlay"
       >
         <div className="modal-header">

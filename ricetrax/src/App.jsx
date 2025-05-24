@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Inventory from './pages/Inventory';
 import BrandDetails from "./pages/BrandDetails";
 import SalesScreen from './pages/SalesScreen'
+import NotificationsTab from './pages/NotificationsTab';
 
 const App = () => (
   <Router>
@@ -19,6 +20,7 @@ const App = () => (
       <Route path="/inventory" element={<Inventory />} />
       <Route path="/inventory/:brandId" element={<BrandDetails />} />
       <Route path="/sales" element={<SalesScreen />} />
+      <Route path="/alerts" element={<NotificationsTab />} />
     </Routes>
   </Router>
 );
