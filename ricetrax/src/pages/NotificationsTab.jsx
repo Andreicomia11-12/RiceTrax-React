@@ -40,7 +40,7 @@ const NotificationsTab = () => {
       <DateTimeDisplay />
       <main className="notifications-container">
         
-        <h2>Product Notifications</h2>
+        <h2 className="notif-header2">Product Notifications</h2>
 
         {notifications.length === 0 ? (
           <p className="no-notifications">No notifications at this time.</p>

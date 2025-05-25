@@ -1,52 +1,29 @@
-/* Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
+/* Basic layout and fonts */
 .settings-page {
   display: flex;
+  font-family: Arial, sans-serif;
   min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fafafa;
-  color: #222;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .settings-page {
-    flex-direction: row;
-  }
-
-  .settings-page > *:first-child {
-    flex-shrink: 0;
-    width: 250px;
-    min-height: 100vh;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+  width: 100vw;
+  background-color: #f9f9f9;
 }
 
 .settings-container {
-  flex-grow: 1;
-  padding: 1.5rem;
-  max-width: 1000px;
-  margin: 70px auto 0;
-  width: 100%;
+  flex: 1;
+  padding: 1.5rem 2rem;
+  max-width: calc(100% - 240px);
+  margin-left: 240px;
+  box-sizing: border-box;
+  transition: margin-left 0.3s ease, max-width 0.3s ease;
 }
 
-h2 {
+.settings-header2 {
+  font-size: 2rem;
   font-weight: 600;
-  font-size: 1.8rem;
-  color: #222;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid #088a1d;
-  padding-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  color: #228a09;
 }
 
-/* Tabs container */
+/* === Tabs === */
 .settings-tabs {
   margin-bottom: 2rem;
 }
@@ -58,129 +35,177 @@ h2 {
 }
 
 .tab-buttons button {
-  background: none;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  color: #0a9433;
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid #4caf50;
+  background-color: white;
+  color: #4caf50;
   font-weight: 600;
-  border-radius: 4px 4px 0 0;
-  transition: border-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.tab-buttons button.active,
 .tab-buttons button:hover {
-  color: #0a8d4b;
+  background-color: #4caf50;
+  color: white;
 }
 
-.tab-buttons button.active {
-  color: #068517;
-  border-bottom-color: #087c1b;
-  font-weight: 700;
-}
+/* === Custom Dropdown for Mobile === */
 
-/* Mobile dropdown */
-.tab-dropdown {
-  display: none;
-}
-
-.tab-dropdown select {
+.custom-dropdown {
+  position: relative;
   width: 100%;
-  padding: 0.65rem;
+  max-width: 92vw;
+  margin-bottom: 1rem;
+  font-family: inherit;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  padding: 0.7rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
   background-color: #fff;
-  color: #222;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
 }
 
-/* Forms */
-.settings-form {
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+.arrow {
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
 }
 
-.settings-form label {
-  display: flex;
-  flex-direction: column;
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  z-index: 1000;
+  max-height: 240px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu li {
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu li.active {
+  background-color: #e0f9ea;
   font-weight: 600;
-  font-size: 1rem;
+}
+
+/* === Tab content === */
+
+.settings-content {
+  background-color: white;
+  padding: 2em 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+  width: 50%;
+}
+
+.settings-content h3 {
+  margin-top: 0;
+  font-weight: 700;
+  margin-bottom: 1rem;
   color: #333;
 }
 
-.settings-form input,
+.settings-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"],
+.settings-form input[type="tel"],
+.settings-form input[type="password"],
 .settings-form select {
-  padding: 0.5rem 0.75rem;
-  margin-top: 0.3rem;
-  border-radius: 6px;
+  width: 100%;
+  padding: 0.45rem 0.7rem;
+  margin-bottom: 1rem;
   border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 1rem;
+  box-sizing: border-box;
   transition: border-color 0.3s ease;
 }
 
-.settings-form input:focus,
+.settings-form input[type="text"]:focus,
+.settings-form input[type="email"]:focus,
+.settings-form input[type="tel"]:focus,
+.settings-form input[type="password"]:focus,
 .settings-form select:focus {
+  border-color: #4caf50;
   outline: none;
-  box-shadow: 0 0 6px rgba(5, 165, 45, 0.4);
 }
 
-.settings-form input[type="checkbox"] {
-  margin-right: 0.5rem;
+.settings-form label input[type="checkbox"] {
+  margin-right: 0.6rem;
 }
 
-/* Buttons */
-.btn-primary {
-  background-color: #0ca13e;
+.save-button {
+  background-color: #4caf50;
   color: white;
   border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 6px;
+  padding: 0.6rem 1.3rem;
   font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 600;
   transition: background-color 0.3s ease;
-  align-self: flex-start;
 }
 
-.btn-primary:hover {
-  background-color: #1f5f86;
+.save-button:hover {
+  background-color: #388e3c;
 }
 
-/* Responsive */
-@media (max-width: 767px) {
+/* === Responsive: Desktop vs Mobile Tabs visibility === */
+
+/* Desktop: show tab buttons, hide dropdown */
+@media (min-width: 769px) {
   .tab-buttons {
+    display: flex;
+  }
+  .tab-dropdown {
     display: none;
   }
 
+
+}
+
+/* Mobile: hide tab buttons, show dropdown */
+@media (max-width: 768px) {
+  .tab-buttons {
+    display: none;
+  }
   .tab-dropdown {
     display: block;
   }
-
-  .settings-container {
-    padding: 1rem;
-    margin-top: 70px;
-    margin-bottom: 100px;
+  .settings-container{
+    margin-top: 80px;
+    margin-left: 0px;
+      max-width: 100%;
   }
 
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .settings-form input {
-    font-size: 0.95rem;
-  }
-
-    .settings-form input[type="checkbox"] {
-    font-size: 0.95rem;
-    margin-right: 0.25rem;
-    margin-bottom: -20px;
-  }
-
-  .btn-primary {
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
+  .settings-content {
+    width: 100%;
+    padding: 1.5rem;
   }
 }
